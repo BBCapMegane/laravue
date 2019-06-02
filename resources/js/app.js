@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -29,5 +28,33 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        todos: [],
+        newTodo: ''
+    },
+    methods: {
+        fetchTodos: function () {
+            axios.get('/api/todo').then((res) => {
+                this.todos = res.data
+            });
+        },
+        addTodo: function () {
+            axios.post('/api/todo', {
+                title: this.newTodo
+            }).then((res) => {
+                this.newTodo = '';
+                this.fetchTodos();
+            });
+        },
+        deleteTodo: function (targetId) {
+            axios.delete('/api/todo/' + targetId).then((res) => {
+                this.fetchTodos();
+            })
+            
+        }
+    },
+    created() {
+        this.fetchTodos();
+    }
 });

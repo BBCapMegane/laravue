@@ -13,11 +13,10 @@
         "aws/aws-sdk-php-laravel": "^3.1",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "5.7.*",
+        "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "phpoffice/phpspreadsheet": "^1.4",
-        "predis/predis": "^1.1",
         "ytake/laravel-fluent-logger": "^3.0"
     },
     "require-dev": {

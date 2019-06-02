@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::get('todo', 'TodoController@index');
+Route::group(['prefix' => 'api'], function(){
+    Route::get('todo', 'TodoController@index');
+    Route::post('todo', 'TodoController@store');
+    Route::delete('todo/{id}', 'TodoController@destroy');
+});
