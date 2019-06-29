@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('todo-component', require('./components/TodoComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,33 +29,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app',
-    data: {
-        todos: [],
-        newTodo: ''
-    },
-    methods: {
-        fetchTodos: function () {
-            axios.get('/api/todo').then((res) => {
-                this.todos = res.data
-            });
-        },
-        addTodo: function () {
-            axios.post('/api/todo', {
-                title: this.newTodo
-            }).then((res) => {
-                this.newTodo = '';
-                this.fetchTodos();
-            });
-        },
-        deleteTodo: function (targetId) {
-            axios.delete('/api/todo/' + targetId).then((res) => {
-                this.fetchTodos();
-            })
-            
-        }
-    },
-    created() {
-        this.fetchTodos();
-    }
+    el: '#app'
 });
